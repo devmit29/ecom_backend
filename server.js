@@ -11,7 +11,7 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin: 'https://ecom-frontend-4x7f.onrender.com', // frontend URL
+    origin: ['http://localhost:3000', 'https://ecom-frontend-4x7f.onrender.com'], // frontend URL
     credentials: true // allow cookies to be sent with requests
 }))
 app.use(fileUpload({

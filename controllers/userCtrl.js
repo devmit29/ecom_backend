@@ -30,7 +30,7 @@ const userCtrl = {
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
                 secure: true, // true if using HTTPS
-                sameSite: 'None',
+                same_site: 'None',
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7d
             })
@@ -58,7 +58,7 @@ const userCtrl = {
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
                 secure: true, // true if using HTTPS
-                sameSite: 'None',
+                same_site: 'None',
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7d
             })
@@ -74,7 +74,7 @@ const userCtrl = {
             res.clearCookie('refreshtoken', {
                 httpOnly: true,
                 secure: true, // true if using HTTPS
-                sameSite: 'None',
+                same_site: 'None',
                 path: '/user/refresh_token'
             })
             return res.json({msg: "Logged out"})

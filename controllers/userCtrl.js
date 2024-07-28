@@ -31,9 +31,10 @@ const userCtrl = {
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 // 7d
+                maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
+                domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost'
             })
 
             res.json({accesstoken})
@@ -59,9 +60,10 @@ const userCtrl = {
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
-                maxAge: 7*24*60*60*1000 // 7d
+                maxAge: 7 * 24 * 60 * 60 * 1000, // 7d
+                domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost'
             })
 
             res.json({accesstoken})
@@ -75,8 +77,9 @@ const userCtrl = {
             res.clearCookie('refreshtoken', {
                 httpOnly: true,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
-            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
-                path: '/user/refresh_token'
+                sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
+                path: '/user/refresh_token',
+                domain: process.env.NODE_ENV === 'production' ? '.onrender.com' : 'localhost'
             })
             return res.json({msg: "Logged out"})
         } catch (err) {

@@ -153,7 +153,13 @@ const Users = require('../models/userModel')
 const Payments = require('../models/paymentModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-
+header("Access-Control-Allow-Origin: *");
+header('Access-Control-Allow-Origin: *');
+header('Access-Control-Allow-Methods: POST, GET, OPTIONS');
+header('Access-Control-Allow-Headers: *');
+header('Access-Control-Max-Age: 1728000');
+header("Content-Length: 0");
+header("Content-Type: text/plain"); 
 const userCtrl = {
     register: async (req, res) =>{
         try {
@@ -220,7 +226,11 @@ const userCtrl = {
     },
     logout: async (req, res) =>{
         try {
-            res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
+            res.clearCookie('refreshtoken', {
+                httpOnly: true,
+                sameSite: 'None',
+                path: '/user/refresh_token'
+            })
             return res.json({msg: "Logged out"})
         } catch (err) {
             return res.status(500).json({msg: err.message})

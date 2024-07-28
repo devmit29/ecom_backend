@@ -30,8 +30,8 @@ const userCtrl = {
 
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
-                secure: true, // true if using HTTPS
-                samSite: 'None',
+                secure: process.env.NODE_ENV === 'production', // Only use secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7d
             })
@@ -58,8 +58,8 @@ const userCtrl = {
 
             res.cookie('refreshtoken', refreshtoken, {
                 httpOnly: true,
-                secure: true, // true if using HTTPS
-                samSite: 'None',
+                secure: process.env.NODE_ENV === 'production', // Only use secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
                 maxAge: 7*24*60*60*1000 // 7d
             })
@@ -74,8 +74,8 @@ const userCtrl = {
         try {
             res.clearCookie('refreshtoken', {
                 httpOnly: true,
-                secure: true, // true if using HTTPS
-                samSite: 'None',
+                secure: process.env.NODE_ENV === 'production', // Only use secure in production
+            sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token'
             })
             return res.json({msg: "Logged out"})

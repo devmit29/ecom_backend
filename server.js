@@ -10,13 +10,16 @@ const path = require('path')
 
 const app = express()
 app.use(express.json())
-app.use(cookieParser())
+
 const corsOptions = {
     origin: ['http://localhost:3000', 'https://ecom-frontend-4x7f.onrender.com'],
     credentials: true,
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
   };
   
 app.use(cors(corsOptions));
+app.use(cookieParser())
   
 app.use(fileUpload({
     useTempFiles: true

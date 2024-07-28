@@ -29,7 +29,7 @@ const userCtrl = {
             const refreshtoken = createRefreshToken({id: newUser._id})
 
             res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
                 sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
@@ -58,7 +58,7 @@ const userCtrl = {
             const refreshtoken = createRefreshToken({id: user._id})
 
             res.cookie('refreshtoken', refreshtoken, {
-                httpOnly: true,
+                httpOnly: false,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
                 sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',
@@ -75,7 +75,7 @@ const userCtrl = {
     logout: async (req, res) =>{
         try {
             res.clearCookie('refreshtoken', {
-                httpOnly: true,
+                httpOnly: false,
                 secure: process.env.NODE_ENV === 'production', // Only use secure in production
                 sameSite: process.env.NODE_ENV === 'production' ? 'None' : 'Lax',
                 path: '/user/refresh_token',

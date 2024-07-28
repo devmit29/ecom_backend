@@ -12,9 +12,10 @@ const app = express()
 app.use(express.json())
 app.use(cookieParser())
 const corsOptions = {
-    origin: ['http://localhost:3000', 'https://ecom-frontend-4x7f.onrender.com', ''],
+    origin: (origin, callback) => {
+        callback(null, true); // Allow all origins
+    },
     credentials: true,
-    
 };
   
 app.use(cors(corsOptions));

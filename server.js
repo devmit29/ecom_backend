@@ -7,6 +7,7 @@ const cookieParser = require('cookie-parser')
 const path = require('path')
 
 
+
 const app = express()
 app.use(express.json())
 app.use(cookieParser())
@@ -15,7 +16,7 @@ const corsOptions = {
     credentials: true,
   };
   
-  app.use(cors(corsOptions));
+app.use(cors(corsOptions));
   
 app.use(fileUpload({
     useTempFiles: true

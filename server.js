@@ -26,9 +26,6 @@ app.use(fileUpload({
 }))
 
 // Routes
-app.get('/', (res) => {
-    res.send('Welcome to the Express server!')
-});
 app.use('/user', require('./routes/userRouter'))
 app.use('/api', require('./routes/categoryRouter'))
 app.use('/api', require('./routes/upload'))
@@ -36,6 +33,9 @@ app.use('/api', require('./routes/productRouter'))
 app.use('/api', require('./routes/paymentRouter'))
 
 
+app.get('/', (req,res) => {
+    res.send('Welcome to the Express server!')
+});
 
 // Connect to mongodb
 const URI = process.env.MONGODB_URL

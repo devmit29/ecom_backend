@@ -154,6 +154,14 @@ const Payments = require('../models/paymentModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
 
+
+const createAccessToken = (user) =>{
+    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '11m'})
+}
+const createRefreshToken = (user) =>{
+    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '7d'})
+}
+
 const userCtrl = {
     register: async (req, res) =>{
         try {
@@ -286,13 +294,6 @@ const userCtrl = {
     }
  }
 
-
-const createAccessToken = (user) =>{
-    return jwt.sign(user, process.env.ACCESS_TOKEN_SECRET, {expiresIn: '11m'})
-}
-const createRefreshToken = (user) =>{
-    return jwt.sign(user, process.env.REFRESH_TOKEN_SECRET, {expiresIn: '7d'})
-}
 
 module.exports = userCtrl
 
